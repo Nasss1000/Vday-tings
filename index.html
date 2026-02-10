@@ -44,6 +44,20 @@
       position: absolute;
     }
 
+    /* Wiggle animation for Yes button */
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(10deg); }
+      50% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    #yes:hover {
+      animation: wiggle 0.3s infinite;
+      box-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff6a81, 0 0 35px #ff84a0;
+    }
+
     /* Falling hearts */
     .heart {
       position: absolute;
@@ -56,6 +70,19 @@
     @keyframes fall {
       0% { transform: translateY(-50px) rotate(0deg); opacity:1; }
       100% { transform: translateY(120vh) rotate(360deg); opacity:0; }
+    }
+
+    /* Sparkle effect for Yes click */
+    .sparkle {
+      position: absolute;
+      font-size: 20px;
+      animation: sparkle 1s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1) rotate(0deg); opacity:1; }
+      100% { transform: scale(2) rotate(360deg); opacity:0; }
     }
   </style>
 </head>
@@ -74,7 +101,7 @@
 <script>
   const noBtn = document.getElementById("no");
 
-  // Move the No button on hover or touch
+  // Move No button on hover or touch
   function moveNo() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -98,8 +125,20 @@
   function sayYes() {
     document.body.innerHTML =
       "<h1>👀❤️🫠<br>😩😩😩😩😩😩😩. I will be there🧍🏾‍♂️!</h1>";
+
     // Extra hearts/confetti
     for(let i=0;i<100;i++){createHeart();}
+
+    // Sparkle emoji burst
+    for(let i=0;i<30;i++){
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.innerText = '✨';
+      s.style.left = Math.random() * window.innerWidth + 'px';
+      s.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(), 1000);
+    }
   }
 </script>
 
