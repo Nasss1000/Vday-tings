@@ -1,146 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For you ❤️</title>
+  <meta charset="UTF-8">
+  <title>Heislazi Twitch Fan Page</title>
   <style>
     body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
       margin: 0;
       padding: 0;
-      background: #ffdde1;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      overflow: hidden;
     }
-
-    h1 {
-      color: #d6336c;
-      font-size: 2.5em;
-      margin-top: 50px;
+    header {
+      background-color: #9146FF;
+      padding: 40px 20px;
     }
-
-    button {
-      padding: 12px 25px;
-      font-size: 18px;
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+    header h2 {
+      margin-top: 10px;
+      font-weight: normal;
+      font-size: 1.5em;
+    }
+    .content {
+      padding: 40px 20px;
+    }
+    .content img {
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      margin: 20px 10px;
+    }
+    .content p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .twitch-embed {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+    }
+    .twitch-embed iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 10px;
-      position: relative;
-      transition: all 0.2s;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
-
-    #yes {
-      background: #ff4d6d;
-      color: white;
-      box-shadow: 0 0 10px #ff4d6d;
+    footer {
+      background-color: #222;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
     }
-
-    #no {
-      background: #6c757d;
-      color: white;
-      position: absolute;
+    a {
+      color: #9146FF;
+      text-decoration: none;
     }
-
-    /* Wiggle animation for Yes button */
-    @keyframes wiggle {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(10deg); }
-      50% { transform: rotate(-10deg); }
-      75% { transform: rotate(10deg); }
-      100% { transform: rotate(0deg); }
+    a:hover {
+      text-decoration: underline;
     }
-
-    #yes:hover {
-      animation: wiggle 0.3s infinite;
-      box-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff6a81, 0 0 35px #ff84a0;
-    }
-
-    /* Falling hearts */
-    .heart {
-      position: absolute;
-      color: #ff4d6d;
-      font-size: 24px;
-      pointer-events: none;
-      animation: fall 5s linear infinite;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-50px) rotate(0deg); opacity:1; }
-      100% { transform: translateY(120vh) rotate(360deg); opacity:0; }
-    }
-
-    /* Sparkle effect for Yes click */
-    .sparkle {
-      position: absolute;
-      font-size: 20px;
-      animation: sparkle 1s linear forwards;
-      pointer-events: none;
-    }
-
-    @keyframes sparkle {
-      0% { transform: scale(1) rotate(0deg); opacity:1; }
-      100% { transform: scale(2) rotate(360deg); opacity:0; }
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 2em;
+      }
+      header h2 {
+        font-size: 1.2em;
+      }
     }
   </style>
 </head>
 <body>
 
-<h1>Will you be my Valentine? 🥰🫶🏼💖</h1>
+<header>
+  <h1>@heislazi</h1>
+  <h2>Check out their Twitch channel!</h2>
+</header>
 
-<button id="yes" onclick="sayYes()">Yes ❤️</button>
-<button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">NOO 😢</button>
+<div class="content">
+  <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/7d9c5b5c-1234-4567-8910-123456789abc-profile_image-300x300.png" alt="Profile Picture">
+  <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/6a9d2e5f-9876-4321-1011-abcdef123456-channel_offline_image-400x150.png" alt="Twitch Banner">
+  <p>Follow <a href="https://www.twitch.tv/heislazi" target="_blank">@heislazi</a> for streams of cool games, funny moments, and more!</p>
+</div>
 
-<!-- Background music -->
-<audio id="music" autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-</audio>
+<!-- Responsive Twitch Embed -->
+<div class="twitch-embed">
+  <iframe
+    src="https://player.twitch.tv/?channel=heislazi&parent=yourusername.github.io"
+    allowfullscreen>
+  </iframe>
+</div>
 
-<script>
-  const noBtn = document.getElementById("no");
-
-  // Move No button on hover or touch
-  function moveNo() {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-  }
-
-  // Create falling hearts
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "💖";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (20 + Math.random()*30) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-  }
-  setInterval(createHeart, 400);
-
-  // When Yes is clicked
-  function sayYes() {
-    document.body.innerHTML =
-      "<h1>👀❤️🫠<br>i have a boyfriend..move on!</h1>";
-
-    // Extra hearts/confetti
-    for(let i=0;i<100;i++){createHeart();}
-
-    // Sparkle emoji burst
-    for(let i=0;i<30;i++){
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.innerText = '✨';
-      s.style.left = Math.random() * window.innerWidth + 'px';
-      s.style.top = Math.random() * window.innerHeight + 'px';
-      document.body.appendChild(s);
-      setTimeout(()=>s.remove(), 1000);
-    }
-  }
-</script>
+<footer>
+  Made with 💜 by a friend.
+</footer>
 
 </body>
 </html>
